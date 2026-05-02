@@ -14,6 +14,7 @@ const SUFFIX_RE = /\);?\s*$/
 export async function fetchWords(sheetId: string, sheetName?: string): Promise<Word[]> {
   const params = new URLSearchParams({ tqx: 'out:json', headers: '1' })
   if (sheetName) params.set('sheet', sheetName)
+  params.set('_', Date.now().toString())
   const url = `https://docs.google.com/spreadsheets/d/${encodeURIComponent(sheetId)}/gviz/tq?${params.toString()}`
 
   const res = await fetch(url, { cache: 'no-store' })

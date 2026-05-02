@@ -26,6 +26,14 @@
 }
 
 @layer components {
+  .progress-bar {
+    @apply h-1 w-full overflow-hidden rounded-full bg-black/[0.05] dark:bg-white/[0.08];
+  }
+
+  .progress-bar span {
+    @apply block h-full rounded-full bg-sweblue transition-[width] duration-300 dark:bg-sweyellow;
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 bg-sweblue text-white font-medium text-base shadow-sm transition-transform active:scale-95 hover:-translate-y-0.5 hover:shadow-md;
     min-height: 48px;

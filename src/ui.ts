@@ -50,16 +50,22 @@ export function render(state: AppState, handlers: Handlers): void {
   const word = state.words[state.order[state.cursor]]
   const total = state.words.length
   const current = state.cursor + 1
+  const progress = Math.round((current / total) * 100)
   const showTts = ttsSupported()
 
   const html = `
     <div class="min-h-full flex flex-col">
-      <header class="flex items-center justify-between px-5 sm:px-8 pt-5">
-        <div class="flex items-center gap-2 text-muted text-sm">
-          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-sweblue text-white text-xs font-semibold">Sv</span>
-          <span class="hidden sm:inline font-medium">Svenska Vocab</span>
+      <header class="px-5 sm:px-8 pt-5">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2 text-muted text-sm">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-sweblue text-white text-xs font-semibold">Sv</span>
+            <span class="hidden sm:inline font-medium">Svenska Vocab</span>
+          </div>
+          <div class="text-muted text-sm tabular-nums" aria-label="Progress">${current} / ${total}</div>
         </div>
-        <div class="text-muted text-sm tabular-nums" aria-label="Progress">${current} / ${total}</div>
+        <div class="progress-bar mt-4" aria-hidden="true">
+          <span style="width: ${progress}%"></span>
+        </div>
       </header>
 
       <main class="flex-1 flex items-center justify-center px-5 sm:px-8 py-6">
@@ -127,9 +133,11 @@ function renderSlot(key: RevealKey, label: string, value: string, revealed: bool
       </div>
     `
   }
+
+  const revealLabel = key === 'translation' ? 'meaning' : label.toLowerCase()
   return `
-    <button type="button" data-slot="${key}" class="slot slot-hidden" aria-label="Reveal ${label.toLowerCase()}">
-      Tap to reveal ${label.toLowerCase()}
+    <button type="button" data-slot="${key}" class="slot slot-hidden" aria-label="Reveal ${revealLabel}">
+      Tap to reveal ${revealLabel}
     </button>
   `
 }

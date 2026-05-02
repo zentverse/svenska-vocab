@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #app {
+    height: 100%;
+  }
+
+  body {
+    @apply font-sans bg-bg-light text-ink antialiased dark:bg-bg-dark dark:text-ink-dark;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-sweblue ring-offset-2 ring-offset-bg-light dark:ring-offset-bg-dark;
+  }
+
+  button {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 bg-sweblue text-white font-medium text-base shadow-sm transition-transform active:scale-95 hover:-translate-y-0.5 hover:shadow-md;
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  .slot {
+    @apply w-full text-left rounded-2xl px-5 py-4 transition-colors;
+    min-height: 64px;
+  }
+
+  .slot-hidden {
+    @apply text-muted bg-black/[0.03] hover:bg-black/[0.06] active:bg-black/[0.08] cursor-pointer dark:text-muted-dark dark:bg-white/[0.04] dark:hover:bg-white/[0.08] dark:active:bg-white/[0.12];
+  }
+
+  .slot-revealed {
+    @apply text-ink bg-transparent cursor-default animate-reveal-in dark:text-ink-dark;
+  }
+
+  .icon-btn {
+    @apply inline-flex items-center justify-center text-muted hover:text-sweblue active:scale-90 transition-all rounded-full;
+    width: 44px;
+    height: 44px;
+  }
+}

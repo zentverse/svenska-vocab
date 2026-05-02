@@ -79,7 +79,7 @@ export function render(state: AppState, handlers: Handlers): void {
 
           <div class="space-y-3">
             ${renderSlot('pronunciation', 'Pronunciation', word.pronunciation, state.revealed.pronunciation)}
-            ${renderSlot('translation', 'Translation', word.english, state.revealed.translation)}
+            ${renderSlot('translation', 'Meaning', word.english, state.revealed.translation)}
           </div>
         </article>
       </main>
